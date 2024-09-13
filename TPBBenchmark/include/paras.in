@@ -1,0 +1,3 @@
+# two materials. Around support and load regions, the material is changed to steel
+CON2DPM 1 d 0. E 20.e3 n 0.15 talpha 0. fc 60. ft 3.5 stype 2  asoft 2.5 wf  0.03 ahard 0.1 bhard 0.03
+IsoLE 2 d 0. E 210.e3 n 0.3 talpha 0.

@@ -1,0 +1,38 @@
+TPB_Xie.out
+#
+three-point bending from Xie's exp data
+#
+NonlinearStatic nsteps 500 deltaT 1. controllmode 1 rtolv 1.e-3 stiffMode 1 manrmsteps 1 maxiter 200 minIter 1 initialGuess 1 nmodules 1
+#
+# vtkxml tstep_step 20 domain_all primvars 1 1 vars 2 1 4 cellvars 2 27 13 stype 1
+vtkxml tstep_step 10 domain_all vars 1 12 cellvars 5 1 4 13 46 47 stype 2 regionsets 1 1 
+#
+domain 2dPlaneStress
+#
+OutputManager tstep_step 1 dofman_output {3086 3938 644 6301} element_output { }
+#
+ndofman 9856 nelem 9624 ncrosssect 1 nmat 2 nbc 3 nic 0 nltf 2 nset 5
+@include "../include/NodeMesh_V1.in"
+#
+SimpleCS 1 thick 100.0
+#
+@include "../include/paras.in"
+#
+BoundaryCondition 1 loadTimeFunction 1 dofs 1 2   values 1  0.0       set 4
+BoundaryCondition 2 loadTimeFunction 1 dofs 2 1 2 values 2  0.0  0.0  set 3
+BoundaryCondition 3 loadTimeFunction 2 dofs 1 2   values 1 -1.0       set 2
+ConstantFunction 1 f(t) 1.0
+PiecewiseLinFunction 2 nPoints 3 t 3 -100.0 0. 500. f(t) 3 0. 0. 1.6
+set 1 elementranges {(1 9624)}
+Set 2 nodes 4  3086  3543  3938  8743
+Set 3 nodes 1  3360
+Set 4 nodes 1  4093
+Set 5 nodes 2  644   6301
+#
+#%BEGIN_CHECK%
+#NODE number     3938   dof 2 unknown d
+#REACTION number 3086   dof 2
+#REACTION number 3938   dof 2
+#NODE number     644   dof 1 unknown d
+#NODE number     6301  dof 1 unknown d
+#%END_CHECK%
