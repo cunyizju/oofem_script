@@ -2,7 +2,7 @@ TPB_Xie.out
 #
 three-point bending from Xie's exp data
 #
-NonlinearStatic nsteps 500 deltaT 1. controllmode 1 rtolv 1.e-3 stiffMode 1 manrmsteps 1 maxiter 200 minIter 1 initialGuess 1 nmodules 1
+NonlinearStatic nsteps 500 profileopt 1 deltaT 1. controllmode 1 rtolv 1.e-3 stiffMode 1 manrmsteps 1 maxiter 200 minIter 1 initialGuess 1 nmodules 1
 #
 # vtkxml tstep_step 20 domain_all primvars 1 1 vars 2 1 4 cellvars 2 27 13 stype 1
 vtkxml tstep_step 10 domain_all vars 1 12 cellvars 5 1 4 13 46 47 stype 2 regionsets 1 1 

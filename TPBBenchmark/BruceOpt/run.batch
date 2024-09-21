@@ -1,0 +1,24 @@
+#!/bin/sh
+#SBATCH --partition=amdfast
+#SBATCH --time=04:00:00
+#SBATCH --nodes=1
+#SBATCH --tasks=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=32G
+#SBATCH --job-name=opt
+#SBATCH --err=opt.err
+#SBATCH --out=opt.out
+#SBATCH --mail-user=cunyi.li@cvut.cz    # where send info about job
+#SBATCH --mail-type=ALL              # what to send, valid type values are NONE, BEGIN, END, FAIL, REQUEUE, ALL
+
+/bin/hostname
+/bin/pwd
+
+export PATH=/home/licunyi/LCY/oofem/build/opt:$PATH
+
+echo "start 1"
+cd /home/licunyi/Simulations/oofem_script/TPBBenchmark/BruceOpt
+srun ~/LCY/oofem/build/opt/oofem -f TPB_Xie.in > TPB_Xie.log
+echo "TPB_Xie submitted"
+
+echo "finished"
